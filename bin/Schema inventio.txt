@@ -1,0 +1,114 @@
+-u root -p d03541514M*
+
+CREATE DATABASE inventio
+
+CREATE TABLE `branches` (
+  `branch_id` int NOT NULL AUTO_INCREMENT,
+  `branch_name` varchar(75) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `branch_phoneNumber` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`branch_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+CREATE TABLE `drivers` (
+  `driver_id` int NOT NULL AUTO_INCREMENT,
+  `driver_name` varchar(50) DEFAULT NULL,
+  `car` varchar(255) DEFAULT NULL,
+  `driver_phoneNum` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`driver_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+CREATE TABLE `employee` (
+  `employee_id` int NOT NULL AUTO_INCREMENT,
+  `username` varchar(100) DEFAULT NULL,
+  `password` varchar(100) DEFAULT NULL,
+  `is_admin` tinyint(1) DEFAULT '0',
+  PRIMARY KEY (`employee_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+INSERT INTO `inventio`.`employee` (`username`, `password`, `is_admin`) VALUES ('admin', '2189', '1')
+
+CREATE TABLE `storge` (
+  `bid` int NOT NULL AUTO_INCREMENT,
+  `brand` varchar(50) DEFAULT NULL,
+  `supplier_name` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`bid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+CREATE TABLE `product` (
+  `pid` int NOT NULL AUTO_INCREMENT,
+  `bid` int DEFAULT NULL,
+  `size` varchar(50) DEFAULT NULL,
+  `qty` int DEFAULT NULL,
+  `register_date` date DEFAULT NULL,
+  `qtyEntry` int DEFAULT NULL,
+  PRIMARY KEY (`pid`),
+  KEY `bid_idx` (`bid`),
+  CONSTRAINT `bid` FOREIGN KEY (`bid`) REFERENCES `storge` (`bid`) ON DELETE SET NULL ON UPDATE RESTRICT
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+CREATE TABLE `extra` (
+  `exid` int NOT NULL AUTO_INCREMENT,
+  `val` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`exid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+INSERT INTO `inventio`.`extra` (`val`) VALUES ('0'), ('0')
+
+CREATE TABLE `stock_in` (
+  `idstock_in` int NOT NULL AUTO_INCREMENT,
+  `register_date` date DEFAULT NULL,
+  `invoice_id` int DEFAULT NULL,
+  `driver_id` int DEFAULT NULL,
+  `totalqty` int DEFAULT NULL,
+  `supplier_name` varchar(255) DEFAULT NULL,
+  `employee_id` int DEFAULT NULL,
+  `notes` varchar(255) DEFAULT NULL,
+  `state` enum('ملغية','مقبولة') DEFAULT 'مقبولة',
+  PRIMARY KEY (`idstock_in`),
+  KEY `drivers_idx` (`driver_id`),
+  KEY `employee_idx` (`employee_id`),
+  CONSTRAINT `drivers` FOREIGN KEY (`driver_id`) REFERENCES `drivers` (`driver_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `employee` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`employee_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+CREATE TABLE `cart_in` (
+  `idcart_in` int NOT NULL AUTO_INCREMENT,
+  `product_id` int DEFAULT NULL,
+  `qty` int DEFAULT NULL,
+  `idstock_in` int DEFAULT NULL,
+  PRIMARY KEY (`idcart_in`),
+  KEY `product_idx` (`product_id`),
+  KEY `stock_in_idx` (`idstock_in`),
+  CONSTRAINT `product` FOREIGN KEY (`product_id`) REFERENCES `product` (`pid`),
+  CONSTRAINT `stock_in` FOREIGN KEY (`idstock_in`) REFERENCES `stock_in` (`idstock_in`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+CREATE TABLE `sales` (
+  `sales_id` int NOT NULL AUTO_INCREMENT,
+  `register_date` date DEFAULT NULL,
+  `invoice_id` int DEFAULT NULL,
+  `driver_id` int DEFAULT NULL,
+  `totalqty` int DEFAULT NULL,
+  `branch_name` varchar(255) DEFAULT NULL,
+  `employee_id` int DEFAULT NULL,
+  `notes` varchar(255) DEFAULT NULL,
+  `state` enum('راجع','صرف') NOT NULL DEFAULT 'صرف',
+  PRIMARY KEY (`sales_id`),
+  KEY `driver_id` (`driver_id`),
+  KEY `employee_id` (`employee_id`),
+  CONSTRAINT `sales_ibfk_1` FOREIGN KEY (`driver_id`) REFERENCES `drivers` (`driver_id`),
+  CONSTRAINT `sales_ibfk_2` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`employee_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+CREATE TABLE `cart` (
+  `cart_id` int NOT NULL AUTO_INCREMENT,
+  `product_id` int DEFAULT NULL,
+  `qty` int DEFAULT NULL,
+  `sales_id` int DEFAULT NULL,
+  PRIMARY KEY (`cart_id`),
+  KEY `product_id` (`product_id`),
+  KEY `cart_ibfk_2` (`sales_id`),
+  CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `product` (`pid`),
+  CONSTRAINT `cart_ibfk_2` FOREIGN KEY (`sales_id`) REFERENCES `sales` (`sales_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci

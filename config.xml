@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch4jConfig>
+  <dontWrapJar>false</dontWrapJar>
+  <headerType>gui</headerType>
+  <jar>D:\repo\inventio\dist\inventio.jar</jar>
+  <outfile>D:\repo\inventio\dist\Narcissus Warehouse.exe</outfile>
+  <errTitle></errTitle>
+  <cmdLine></cmdLine>
+  <chdir>.\bin</chdir>
+  <priority>normal</priority>
+  <downloadUrl></downloadUrl>
+  <supportUrl></supportUrl>
+  <stayAlive>false</stayAlive>
+  <restartOnCrash>false</restartOnCrash>
+  <manifest></manifest>
+  <icon>D:\repo\inventio\dist\bin\icon.ico</icon>
+  <classPath>
+    <mainClass>inventio.Inventio</mainClass>
+    <cp>lib/jcalendar-1.4.jar</cp>
+    <cp>lib/jgoodies-common-1.2.0.jar</cp>
+    <cp>lib/jgoodies-looks-2.4.1.jar</cp>
+    <cp>lib/junit-4.6.jar</cp>
+    <cp>lib/mysql-connector-j-8.0.33.jar</cp>
+    <cp>lib/commons-beanutils-1.9.4.jar</cp>
+    <cp>lib/commons-collections-3.2.1-1.0.0.jar</cp>
+    <cp>lib/commons-digester-1.7.jar</cp>
+    <cp>lib/jasperreports-6.5.1.jar</cp>
+    <cp>lib/jasperreports-fonts-6.20.0.jar</cp>
+    <cp>lib/jasperreports-javaflow-6.20.0.jar</cp>
+    <cp>lib/org-apache-commons-logging.jar</cp>
+    <cp>lib/swingx-all-1.6.4.jar</cp>
+    <cp>lib/AbsoluteLayout.jar</cp>
+  </classPath>
+  <jre>
+    <path>%JAVA_HOME%;%PATH%</path>
+    <requiresJdk>false</requiresJdk>
+    <requires64Bit>false</requires64Bit>
+    <minVersion></minVersion>
+    <maxVersion></maxVersion>
+  </jre>
+</launch4jConfig>
