@@ -100,7 +100,7 @@ The Warehouse Management System (WMS) was developed to streamline inventory and 
 
 ## 📬 Feedback
 
-I’d love to hear your thoughts on the project! If you’ve worked on something similar, or if you have suggestions for improvements, feel free to open an issue or message me on (LinkedIn)[https://www.linkedin.com/in/alialghanay/].
+I’d love to hear your thoughts on the project! If you’ve worked on something similar, or if you have suggestions for improvements, feel free to open an issue or message me on [LinkedIn](https://www.linkedin.com/in/alialghanay/).
 
 ## 📜 License
 
