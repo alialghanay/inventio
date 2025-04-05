@@ -29,7 +29,7 @@ This is a Java Swing-based desktop application that I developed to manage wareho
 
 1. **Clone or Download** this repository to your local machine.
 2. **Import the MySQL Database**:
-   - Go to bin Schema inventio.txt and copy the script inside the .txt file run it in mysql env.
+   - Go to bin `Schema inventio.txt` and copy the script inside the .txt file run it in mysql env.
    - Go to the `db` folder in this repository.
    - Import the SQL files into your MySQL server. The files include:
      - `inventio_branches.sql`
