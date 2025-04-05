@@ -15,6 +15,18 @@ This is a Java Swing-based desktop application that I developed to manage wareho
 
 ---
 
+## 🖼️ Demo
+
+Here are some screenshots of the application in action:
+
+![Demo Screenshot 1](images/demo2.png)
+_Shows Login user interface._
+
+![Demo Screenshot 2](images/demo.png)
+_Main interface showcasing inventory management._
+
+--
+
 ## 🛠️ Built With
 
 - **Java SE**: For the core application logic.
@@ -29,21 +41,12 @@ This is a Java Swing-based desktop application that I developed to manage wareho
 
 1. **Clone or Download** this repository to your local machine.
 2. **Import the MySQL Database**:
-   - Go to bin `Schema inventio.txt` and copy the script inside the .txt file run it in mysql env.
-   - Go to the `db` folder in this repository.
-   - Import the SQL files into your MySQL server. The files include:
-     - `inventio_branches.sql`
-     - `inventio_cart.sql`
-     - `inventio_drivers.sql`
-     - `inventio_employee.sql`
-     - `inventio_product.sql`
-     - `inventio_sales.sql`
-     - `inventio_stock_in.sql`
-     - `inventio_storage.sql`
-   - Ensure your MySQL server is running and accessible.
+   - Go to the bin folder and find the file `Schema inventio.txt`.
+   - Copy the script inside the `.txt` file and run it in your `MySQL environment`.
+   - Ensure your MySQL server is running and accessible on port `3306`.
 3. **Run the Application**:
    - open `inventio.jar`
-   - the default (username and password): (admin, admin).
+   - the default (username and password): (admin, 2189).
 
 ## 📁 Project Structure
 
