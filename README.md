@@ -2,7 +2,7 @@
 
 This is a Java Swing-based desktop application that I developed to manage warehouse operations. This application was part of my early software development journey with **IZAR Tech**, a startup I co-founded.
 
-> ⚠️ **Note:** This repository contains only the **build files**. The source code is not available, but the application itself is fully functional.
+> ⚠️ **Note:** This repository contains only the **build files**. The source code is not available (lost it!), but the application itself is fully functional.
 
 ---
 
